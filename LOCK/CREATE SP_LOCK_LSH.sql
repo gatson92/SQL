@@ -13,7 +13,7 @@ AS
 ** File:
 ** Name: SP_LOCK_LSH
 **
-** Desc: SP_LOCK Á¶È¸
+** Desc: SP_LOCK ì¡°íšŒ
 **
 ** EXEC dbo.SP_LOCK_LSH 
 **
@@ -25,7 +25,7 @@ AS
 ** Input Output
 ** ---------- -----------
 **
-** Auth: ÀÌ»óÇö
+** Auth: ì´ìƒí˜„
 ** Date: 2023.04.07
 *******************************************************************************
 ** Change History
@@ -38,7 +38,7 @@ SET NOCOUNT ON
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 
 BEGIN
-	-- ##1. MODE = 'X'ÀÎ SPID Ã£±â
+	-- ##1. MODE = 'X'ì¸ SPID ì°¾ê¸°
 	SELECT 	DISTINCT CONVERT (SMALLINT, REQ_SPID) AS SPID,
 					 RSC_DBID AS DBID,
 					 SUBSTRING (V.NAME, 1, 4) AS TYPE,
@@ -59,7 +59,7 @@ BEGIN
 	    AND SUBSTRING (U.NAME, 1, 8) = 'X'
 	ORDER BY SPID
 
-	-- ##2. ÁöÁ¤µÈ SPID¿¡ ÀÇÇØ ½ÇÇàµÈ ¸¶Áö¸· SQL¹® ¹× ÇØ´ç IP È®ÀÎ
+	-- ##2. ì§€ì •ëœ SPIDì— ì˜í•´ ì‹¤í–‰ëœ ë§ˆì§€ë§‰ SQLë¬¸ ë° í•´ë‹¹ IP í™•ì¸
 
 	CREATE TABLE #TMP
 	(
