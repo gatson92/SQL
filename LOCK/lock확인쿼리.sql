@@ -1,10 +1,10 @@
 
--- lock »Æ¿Œ (Mode∞° x)
+-- lock ÌôïÏù∏ (ModeÍ∞Ä x)
 EXEC SP_LOCK -- SELECT * FROM SYS.sysprocesses WHERE BLOCKED > 0
 
 DECLARE @SP_ID INT = 940
 
--- lock √ﬂ¿˚
+-- lock Ï∂îÏ†Å
 SELECT  P.SPID,
 		P.LOGIN_TIME,
 		P.LAST_BATCH,
@@ -19,10 +19,10 @@ SELECT  P.SPID,
  WHERE 1=1
    AND P.SPID = @SP_ID
 
--- LOCK ∞…∏∞ ƒı∏ÆπÆ »Æ¿Œ 
+-- LOCK Í±∏Î¶∞ ÏøºÎ¶¨Î¨∏ ÌôïÏù∏ 
 DBCC INPUTBUFFER ( @SP_ID );
 
--- LOCK ªË¡¶ 
+-- LOCK ÏÇ≠Ï†ú 
 KILL 378
 
 
