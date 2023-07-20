@@ -1,0 +1,53 @@
+--  컬럼 추가
+ALTER TABLE [테이블명] ADD [컬럼명] [속성]
+
+--  컬럼 수정
+ALTER TABLE  [테이블명] ALTER COLUMN [컬럼명] [속성]
+
+--  원하는 위치에 컬럼 추가 (기준컬럼 뒤에 생성됨)
+ALTER TABLE [테이블명] ADD [추가할 컬럼명][데이터타입(길이)] AFTER [기준 컬럼명];
+
+--  맨 앞에 컬럼 추가
+ALTER TABLE [테이블명] ADD [추가할 컬럼명][데이터타입(길이)] FIRST ;
+
+--  컬럼 위치 수정
+ALTER TABLE [테이블명]MODIFY [이동할 컬럼명][데이터타입(길이)] AFTER [기준 컬럼명];
+
+
+-- 테이블명 수정 (내장 시스템 프로시져 sp_rename)
+sp_rename '[기존 테이블명]','[수정될 테이블명]'
+
+-- 컬럼명 수정 (내장 시스템 프로시져 sp_rename)
+sp_rename '[기존 테이블명].[기존컬럼명]' , '[수정될 컬럼명]'
+
+-- 컬럼 삭제
+ALTER TABLE [테이블명] DROP COLUMN [컬럼명]
+
+-- 제약조건 걸려있을시 삭제 쿼리 
+ALTER TABLE table_name
+DROP CONSTRAINT constraint_name;
+
+
+-----------------------------------------------
+Add, Modify, Delete Column 
+
+--  ADD COLUMN
+ALTER TABLE [TABLE NAME] ADD [COLUMN NAME] [ATTRIBUTE]
+
+--  ADD COLUMN DEFAULT
+ALTER TABLE [스키마.테이블명] ADD CONSTRAINT [제약조건명] DEFAULT [기본값] FOR [칼럼명]
+ALTER TABLE dbo.emp ADD CONSTRAINT df_emp_job DEFAULT 'NONE' FOR job
+ALTER TABLE dbo.emp ADD ret_yn VARCHAR(1) DEFAULT 'N'
+
+
+--  MODIFY COLUMN
+ALTER TABLE [TABLE NAME] ALTER COLUMN [COLUMN NAME] [ATTRIBUTE]
+
+-- MODIFY TABLE NAME using sp_rename
+sp_rename '[Existing TABLE NAME]','[Modified TABLE NAME]'
+
+-- MODIFY COLUMN NAME using sp_rename
+sp_rename '[Existing TABLE NAME].[Existing COLUMN NAME]' , '[Modified COLUMN NAME]'
+
+-- DELETE COLUMN
+ALTER TABLE [TABLE NAME] DROP COLUMN [COLUMN NAME]
