@@ -1,0 +1,16 @@
+
+-- 1. 길이제한 있음
+SELECT STRING_AGG(SEQ, '$') AS Concatenated_SEQ
+  FROM LEADER_PRODUCT_iF;
+
+
+-- 2. 제한 거의 없음 
+SELECT STUFF((SELECT '$' + CAST(SEQ AS VARCHAR(20))
+  FROM LEADER_PRODUCT_iF
+   FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '') AS Concatenated_SEQ
+
+-- 3. 2번을 JOIN 해서 쓰기 
+SELECT STUFF((SELECT '$' + CAST(P.SEQ AS VARCHAR(20))
+  FROM PRODUCT P
+ INNER JOIN ECOMMERCEPRODUCT E ON P.SEQ = E.proseq
+   FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '') AS Concatenated_SEQ
