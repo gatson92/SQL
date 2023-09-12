@@ -1,0 +1,9 @@
+
+
+
+SELECT value, COUNT(value) AS DuplicateCount
+FROM (
+    VALUES (1), (2), (3), (4), (4), (4), (4)
+) AS t(value)
+GROUP BY value
+HAVING COUNT(value) > 1;
